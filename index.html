@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agent Identity Passport — Nocta Prototype</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root { --ink:#1b1f27; --mute:#5b6573; --line:#e6e9ee; --bg:#f6f7f9; --card:#fff; --blue:#2563eb; --cyan:#0891b2; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:"IBM Plex Sans",sans-serif; background:linear-gradient(180deg,#f8fafc,#eef2f7); color:var(--ink); }
+    header { padding:48px 8vw 24px; }
+    .kicker { letter-spacing:.18em; text-transform:uppercase; font-size:11px; color:var(--cyan); font-weight:600; }
+    h1 { font-family:Fraunces,serif; font-size:clamp(36px,6vw,64px); margin:8px 0 12px; }
+    .one { font-size:20px; color:var(--mute); max-width:720px; }
+    main { padding:0 8vw 80px; display:grid; gap:20px; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); }
+    .card { background:var(--card); border:1px solid var(--line); border-radius:18px; padding:24px; box-shadow:0 10px 30px rgba(27,31,39,.04); }
+    h2 { font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--blue); margin:0 0 10px; }
+    .demo { grid-column:1/-1; }
+    label { display:block; font-size:12px; color:var(--mute); margin:12px 0 6px; }
+    input, textarea { width:100%; border:1px solid var(--line); border-radius:12px; padding:12px 14px; font:inherit; }
+    button { margin-top:16px; background:var(--blue); color:white; border:0; border-radius:999px; padding:12px 18px; font-weight:600; cursor:pointer; }
+    .out { margin-top:16px; min-height:72px; background:#f8fafc; border-radius:12px; padding:14px; color:var(--mute); }
+    .badge { display:inline-flex; gap:8px; align-items:center; background:#eff6ff; color:var(--blue); border-radius:999px; padding:6px 10px; font-size:12px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="kicker">Nocta prototype · AI + Agentic AI</div>
+    <h1>Agent Identity Passport</h1>
+    <p class="one">A portable, attest-able identity for autonomous agents independent of their host app.</p>
+    <div class="badge">Isolated demo · AI / Agentic scope only</div>
+  </header>
+  <main>
+    <section class="card"><h2>Problem</h2><p>Agents are currently just API keys inside someone else&#x27;s account.</p></section>
+    <section class="card"><h2>First customer</h2><p>An agent platform that needs audit-grade actor IDs</p></section>
+    <section class="card"><h2>Why now</h2><p>Multiple stacks are inventing incompatible agent IDs at once.</p></section>
+    <section class="card"><h2>MVP</h2><p>Issue a DID for an agent, bind it to a sponsor, sign actions, verify elsewhere.</p></section>
+    <section class="card demo">
+      <h2>Core agentic loop</h2>
+      <p>This isolated prototype demonstrates the product's first useful autonomous loop — not a generic dashboard.</p>
+      <label>Describe the agent job to be done</label>
+      <textarea id="job" rows="3" placeholder="e.g. Hold $240 until the data agent delivers the promised corpus"></textarea>
+      <label>Counterparty agent</label>
+      <input id="who" placeholder="agent:vendor.dataset.7" />
+      <button id="go">Run the loop</button>
+      <div class="out" id="out">Waiting for an agent job…</div>
+    </section>
+  </main>
+  <script>
+    const product = 'Agent Identity Passport';
+    document.getElementById("go").onclick = () => {
+      const job = document.getElementById("job").value || "unnamed job";
+      const who = document.getElementById("who").value || "unknown-agent";
+      document.getElementById("out").innerHTML =
+        "<strong>"+product+"</strong> accepted the agent job.<br/>Counterparty <code>"+who+"</code><br/>Status: held under policy · audit trail written · human kill-switch armed.";
+    };
+  </script>
+</body>
+</html>
